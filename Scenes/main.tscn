@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://dhpfttq7358n1"]
+
+[ext_resource type="PackedScene" uid="uid://dfqk3iw4uhx74" path="res://Objects/shell.tscn" id="1_jjgbg"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jjgbg"]
+sky_top_color = Color(0.296077, 0.726681, 0.984072, 1)
+sky_horizon_color = Color(0.631835, 0.784693, 0.974057, 1)
+ground_bottom_color = Color(0.176643, 0.549393, 0.700371, 1)
+ground_horizon_color = Color(0.537496, 0.800136, 0.890389, 1)
+
+[sub_resource type="Sky" id="Sky_bo1nx"]
+sky_material = SubResource("ProceduralSkyMaterial_jjgbg")
+
+[sub_resource type="Environment" id="Environment_8gbba"]
+background_mode = 2
+sky = SubResource("Sky_bo1nx")
+
+[sub_resource type="TorusMesh" id="TorusMesh_jjgbg"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_bo1nx"]
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8gbba")
+
+[node name="Grass" parent="." instance=ExtResource("1_jjgbg")]
+SpreadPow = 1.1
+
+[node name="Torus" parent="." instance=ExtResource("1_jjgbg")]
+transform = Transform3D(0.950684, -0.310162, 0, 0.310162, 0.950684, 0, 0, 0, 1, 0.723645, 1.38456, -1.34985)
+TotalLayers = 90
+Density = 160.0
+SpreadPow = 0.5
+ShellColor = Color(0.792992, 0.651953, 0.314041, 1)
+ShellMesh = SubResource("TorusMesh_jjgbg")
+
+[node name="Sphere" parent="." instance=ExtResource("1_jjgbg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.83937, 1.02532, 1.12214)
+ShellLength = 0.4
+SpreadPow = 0.4
+ShellColor = Color(0.938517, 0.343333, 0.516316, 1)
+ShellMesh = SubResource("SphereMesh_bo1nx")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.702178, 0.210597, -0.680143, 0, 0.955256, 0.295781, 0.712001, 0.207691, -0.67076, -4.81497, 2.64681, -3.97819)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.99987, 0, -0.0161435, -0.00632825, 0.919965, 0.391949, 0.0148514, 0.392, -0.919845, -1.43502, 3.99826, -6.84903)
